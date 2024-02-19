@@ -3,7 +3,9 @@ const app = express();
 
 const { searchChildren } = require('./controller');
 
-app.get('/search', searchChildren);
+app.use(express.json());
+
+app.post('/search', searchChildren);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

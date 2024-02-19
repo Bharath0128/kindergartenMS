@@ -1,21 +1,20 @@
 const studentData = require('./data.js');
 
 const searchChildren = (req, res) => {
-  const firstName = req.query.first_name;
-  const lastName = req.query.last_name;
+  const { first_name, last_name } = req.body;
 
-  if (!firstName && !lastName) {
+  if (!first_name && !last_name) {
     return res.status(400).json({
       error: 'Please enter first name or last name of the child',
     });
   }
 
   let results = studentData.filter((child) => {
-    const firstNameMatch = firstName
-      ? partialMatch(child.first_name.toLowerCase(), firstName.toLowerCase())
+    const firstNameMatch = first_name
+      ? partialMatch(child.first_name.toLowerCase(), first_name.toLowerCase())
       : true;
-    const lastNameMatch = lastName
-      ? partialMatch(child.last_name.toLowerCase(), lastName.toLowerCase())
+    const lastNameMatch = last_name
+      ? partialMatch(child.last_name.toLowerCase(), last_name.toLowerCase())
       : true;
     return firstNameMatch && lastNameMatch;
   });
