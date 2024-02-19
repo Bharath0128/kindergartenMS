@@ -1,7 +1,6 @@
 const studentData = require('./data.js');
 
 const searchChildren = (req, res) => {
-  console.log('Request is:', req.query);
   const firstName = req.query.first_name;
   const lastName = req.query.last_name;
 
